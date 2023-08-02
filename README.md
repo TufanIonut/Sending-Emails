@@ -38,3 +38,4 @@ public class EmailService
         }
     }
 }
+![image](https://github.com/TufanIonut/Sending-Emails/assets/117408976/c96c7d8a-92b7-4115-9e70-eb8ecdee1237)
