@@ -39,3 +39,36 @@ public class EmailService
     }
 }
 ![image](https://github.com/TufanIonut/Sending-Emails/assets/117408976/c96c7d8a-92b7-4115-9e70-eb8ecdee1237)
+
+
+CREATE PROCEDURE dbo.UpdateSentAt
+    @ExternalId INT,
+    @SentAt DATETIME
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE YourTable
+    SET SentAt = @SentAt
+    WHERE ExternalId = @ExternalId;
+END
+
+
+public void UpdateSentAt(int externalId, DateTime sentAt)
+{
+    string connectionString = "YourConnectionString";
+    using (SqlConnection connection = new SqlConnection(connectionString))
+    {
+        connection.Open();
+        using (SqlCommand command = new SqlCommand("UpdateSentAt", connection))
+        {
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+
+            // Add parameters
+            command.Parameters.AddWithValue("@ExternalId", externalId);
+            command.Parameters.AddWithValue("@SentAt", sentAt);
+
+            // Execute the stored procedure
+            command.ExecuteNonQuery();
+        }
+    }
